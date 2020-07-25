@@ -62,7 +62,7 @@ EOF
 # 全局变量：
 #   - GF_ENV_INSTALL_PLUGINS: 以 ","/";"/" " 分隔的插件 id 列表，如果为第三方地址，形式类似"id=url"
 grafana_install_plugins(){
-    if [[ -n "$GF_ENV_INSTALL_PLUGINS" ]]; then
+    if [[ -n "${GF_ENV_INSTALL_PLUGINS:-}" ]]; then
     splitted_plugin_list=$(tr ',;' ' ' <<< "${GF_ENV_INSTALL_PLUGINS}")
     read -r -a gf_plugins_list <<< "${splitted_plugin_list}"
     for plugin in "${gf_plugins_list[@]}"; do
