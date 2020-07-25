@@ -29,8 +29,7 @@ ENV	APP_BASE_DIR=/usr/local/${APP_NAME} \
 	APP_CACHE_DIR=/var/cache/${APP_NAME} \
 	APP_RUN_DIR=/var/run/${APP_NAME} \
 	APP_LOG_DIR=/var/log/${APP_NAME} \
-	APP_CERT_DIR=/srv/cert/${APP_NAME} \
-	APP_WWW_DIR=/srv/www
+	APP_CERT_DIR=/srv/cert/${APP_NAME}
 
 # 设置应用需要的特定环境变量
 ENV \
