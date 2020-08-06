@@ -10,6 +10,7 @@
 . /usr/local/scripts/libos.sh
 . /usr/local/scripts/libservice.sh
 . /usr/local/scripts/libvalidations.sh
+. /usr/local/scripts/libnet.sh
 
 # 函数列表
 
@@ -106,7 +107,6 @@ docker_app_init() {
     if [[ ! -f "${APP_DATA_DIR}/.data_init_flag" ]]; then
         LOG_I "Deploying ${APP_NAME} from scratch..."
 		
-        # TODO: 根据需要生成相应初始化数据
         grafana_install_plugins
 
         touch ${APP_DATA_DIR}/.data_init_flag

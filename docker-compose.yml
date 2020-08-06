@@ -4,13 +4,10 @@ version: '3.6'
 # 更多配置参数请参考镜像 README.md 文档中说明
 services:
   grafana:
-    image: colovu/grafana:7
+    image: colovu/grafana:latest
     restart: always
     ports:
       - '3000:3000'
     environment:
       - 'GF_SECURITY_ADMIN_PASSWORD=colovu'
-    volumes:
-    # 会自动创建 grafana 子目录
-      - $PWD/conf:/srv/conf
-      - $PWD/data:/srv/data
+
