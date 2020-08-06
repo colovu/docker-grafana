@@ -89,7 +89,7 @@ RUN \
 		${local_url} \
 		https://dl.grafana.com/oss/release/ \
 		"; \
-	. /usr/local/scripts/libdownload.sh && download_dist "${DIST_NAME}" "${DIST_URLS}" --checksum "${DIST_SHA256}"; \
+	. /usr/local/scripts/libdownload.sh && download_dist "${DIST_NAME}" "${DIST_URLS}"; \
 	\
 	\
 	\
