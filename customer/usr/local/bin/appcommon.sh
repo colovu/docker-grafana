@@ -37,8 +37,6 @@ export GF_PATHS_PROVISIONING="${GF_PATHS_PROVISIONING:-${APP_CONF_DIR}/provision
 export APP_CONF_FILE="${APP_CONF_DIR}/grafana.ini"
 
 # Users
-export APP_USER="${GF_DAEMON_USER:-${APP_USER}}"
-export APP_GROUP="${GF_DAEMON_GROUP:-${APP_GROUP}}"
 
 # Application settings
 export GF_LOG_MODE="console file"
