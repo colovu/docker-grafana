@@ -74,7 +74,7 @@ RUN \
 		wget \
 	"; \
 	apt-get update; \
-	apt-get install -y --no-install-recommends ${fetchDeps}; \
+	apt-get install -y --no-install-recommends ${fetchDeps} ${appDeps}; \
 	\
 	\
 	\
