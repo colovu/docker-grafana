@@ -83,7 +83,7 @@ RUN set -eux; \
 	appVersion=2.32-r0; \
 	appName=glibc-${appVersion}.apk; \
 	[ -n ${local_url} ] && localURL=${local_url}/glibc; \
-	appUrls="${localURL} \
+	appUrls="${localURL:-} \
 		https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${appVersion} \
 		"; \
 	download_pkg install ${appName} "${appUrls}"; \
