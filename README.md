@@ -14,7 +14,7 @@
 
 **镜像信息：**
 
-* 镜像地址：colovu/grafana
+* 镜像地址：registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7
 
 
 
@@ -23,7 +23,7 @@
 Docker 快速启动命令：
 
 ```shell
-$ docker run -d colovu/grafana
+$ docker run -d registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7
 ```
 
 Docker-Compose 快速启动命令：
