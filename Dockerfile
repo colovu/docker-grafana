@@ -81,7 +81,7 @@ LABEL \
 	"Vendor"="Endial Fang (endial@126.com)"
 
 # 从预处理过程中拷贝软件包(Optional)，可以使用阶段编号或阶段命名定义来源
-COPY --from=builder /tmp/grafana-7.1.0/ /usr/local/grafana
+COPY --from=builder /tmp/grafana-${APP_VERSION}/ /usr/local/grafana
 
 # 拷贝应用使用的客制化脚本，并创建对应的用户及数据存储目录
 COPY customer /
