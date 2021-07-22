@@ -5,7 +5,7 @@
 
 # 设置当前应用名称及版本
 ARG app_name=grafana
-ARG app_version=7.1.0
+ARG app_version=8.0.6
 
 # 设置默认仓库地址，默认为 阿里云 仓库
 ARG registry_url="registry.cn-shenzhen.aliyuncs.com"
@@ -42,7 +42,6 @@ RUN set -eux; \
 	dpkgOsArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	dpkgOsName="$(uname | tr [:'upper':] [:'lower':])"; \
 	appName="${APP_NAME}-${APP_VERSION}.${dpkgOsName}-${dpkgOsArch}.tar.gz"; \
-	sha256="4b6d6ce3670b281919dac8da4bf6d644bc8403ceae215e4fd10db0f2d1e5718e"; \
 	[ ! -z ${local_url} ] && localURL=${local_url}/grafana; \
 	appUrls="${localURL:-} \
 		https://dl.grafana.com/oss/release \
