@@ -167,7 +167,9 @@ export GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS=true
 
 ## 更新记录
 
-- 7、7.1、latest
+2021/7/22:
+- 更新软件包为 7.1.5
+- 初始版本7.1.0
 
 
 
