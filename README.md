@@ -13,8 +13,8 @@
 **镜像信息：**
 
 * 镜像地址：
-  - 阿里云: registry.cn-shenzhen.aliyuncs.com/colovu/grafana:latest
-  - DockerHub：colovu/grafana:latest
+  - 阿里云: registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7.1
+  - DockerHub：colovu/grafana:7.1
   * 依赖镜像：debian:buster
 
 > 后续相关命令行默认使用`[Docker Hub](https://hub.docker.com)`镜像服务器做说明
@@ -27,10 +27,10 @@ Docker 快速启动命令：
 
 ```shell
 # 从 Docker Hub 服务器下载镜像并启动
-$ docker run -d --name grafana colovu/grafana:latest
+$ docker run -d --name grafana colovu/grafana:7.1
 
 # 从 Aliyun 服务器下载镜像并启动
-$ docker run -d --name grafana registry.cn-shenzhen.aliyuncs.com/colovu/grafana:latest
+$ docker run -d --name grafana registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7.1
 ```
 
 - `colovu/imgname:<TAG>`：镜像名称及版本标签；标签不指定时默认使用`latest`
@@ -42,10 +42,10 @@ Docker-Compose 快速启动命令：
 
 ```shell
 # 从 Gitee 下载 Compose 文件
-$ curl -sSL -o https://gitee.com/colovu/docker-grafana/raw/master/docker-compose.yml
+$ curl -sSL -o https://gitee.com/colovu/docker-grafana/raw/7/docker-compose.yml
 
 # 从 Github 下载 Compose 文件
-$ curl -sSL -o https://raw.githubusercontent.com/colovu/docker-grafana/master/docker-compose.yml
+$ curl -sSL -o https://raw.githubusercontent.com/colovu/docker-grafana/7/docker-compose.yml
 
 # 创建并启动容器
 $ docker-compose up -d
