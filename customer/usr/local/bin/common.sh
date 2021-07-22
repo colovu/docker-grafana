@@ -8,57 +8,15 @@
 
 . /usr/local/scripts/libfile.sh
 . /usr/local/scripts/libfs.sh
+. /usr/local/scripts/liblog.sh
 . /usr/local/scripts/libos.sh
 . /usr/local/scripts/libservice.sh
 . /usr/local/scripts/libvalidations.sh
 
 # 函数列表
 
-# 加载应用使用的环境变量初始值，该函数在相关脚本中以 eval 方式调用
-# 全局变量:
-#   ENV_* : 容器使用的全局变量
-#   APP_* : 在镜像创建时定义的全局变量
-#   *_* : 应用配置文件使用的全局变量，变量名根据配置项定义
-# 返回值:
-#   可以被 'eval' 使用的序列化输出
-app_env() {
-    cat <<-'EOF'
-		# Common Settings
-		export ENV_DEBUG=${ENV_DEBUG:-false}
-		export ALLOW_EMPTY_PASSWORD="${ALLOW_EMPTY_PASSWORD:-no}"
-
-		# Paths
-		export GF_PATHS_DATA="${GF_PATHS_DATA:-${APP_DATA_DIR}}"
-		export GF_PATHS_LOGS="${GF_PATHS_LOGS:-${APP_LOG_DIR}}"
-		export GF_PATHS_PLUGINS="${GF_PATHS_PLUGINS:-${APP_DATA_DIR}/plugins}"
-		export GF_PATHS_PROVISIONING="${GF_PATHS_PROVISIONING:-${APP_CONF_DIR}/provisioning}"
-
-		export APP_CONF_FILE="${APP_CONF_DIR}/grafana.ini"
-
-		# Users
-
-		# Application settings
-		export GF_LOG_MODE="console file"
-
-		# Application Cluster configuration
-
-		# Application TLS Settings
-
-		# Application Authentication
-
-EOF
-
-    # 利用 *_FILE 设置密码，不在配置命令中设置密码，增强安全性
-#    if [[ -f "${ZOO_CLIENT_PASSWORD_FILE:-}" ]]; then
-#        cat <<"EOF"
-#			export ZOO_CLIENT_PASSWORD="$(< "${ZOO_CLIENT_PASSWORD_FILE}")"
-#EOF
-#    fi
-}
-
-
 # 检测用户参数信息是否满足条件; 针对部分权限过于开放情况，打印提示信息
-app_verify_minimum_env() {
+grafana_verify_minimum_env() {
     local error_code=0
 
     LOG_D "Validating settings in APP_* env vars..."
@@ -109,13 +67,13 @@ fi
 }
 
 # 清理初始化应用时生成的临时文件
-app_clean_tmp_file() {
+grafana_clean_tmp_file() {
     LOG_D "Clean ${APP_NAME} tmp files for init..."
 
 }
 
 # 在重新启动容器时，删除标志文件及必须删除的临时文件 (容器重新启动)
-app_clean_from_restart() {
+grafana_clean_from_restart() {
     LOG_D "Clean ${APP_NAME} tmp files for restart..."
     local -r -a files=(
         "/var/run/${APP_NAME}/${APP_NAME}.pid"
@@ -131,8 +89,8 @@ app_clean_from_restart() {
 
 # 应用默认初始化操作
 # 执行完毕后，生成文件 ${APP_CONF_DIR}/.app_init_flag 及 ${APP_DATA_DIR}/.data_init_flag 文件
-app_default_init() {
-	app_clean_from_restart
+grafana_default_init() {
+	grafana_clean_from_restart
     LOG_D "Check init status of ${APP_NAME}..."
 
     # 检测配置文件是否存在
@@ -161,7 +119,7 @@ app_default_init() {
 
 # 用户自定义的前置初始化操作，依次执行目录 preinitdb.d 中的初始化脚本
 # 执行完毕后，生成文件 ${APP_DATA_DIR}/.custom_preinit_flag
-app_custom_preinit() {
+grafana_custom_preinit() {
     LOG_D "Check custom pre-init status of ${APP_NAME}..."
 
     # 检测用户配置文件目录是否存在 preinitdb.d 文件夹，如果存在，尝试执行目录中的初始化脚本
@@ -184,13 +142,13 @@ app_custom_preinit() {
 
     # 检测依赖的服务是否就绪
     #for i in ${SERVICE_PRECONDITION[@]}; do
-    #    app_wait_service "${i}"
+    #    grafana_wait_service "${i}"
     #done
 }
 
 # 用户自定义的应用初始化操作，依次执行目录initdb.d中的初始化脚本
 # 执行完毕后，生成文件 ${APP_DATA_DIR}/.custom_init_flag
-app_custom_init() {
+grafana_custom_init() {
     LOG_D "Check custom init status of ${APP_NAME}..."
 
     # 检测用户配置文件目录是否存在 initdb.d 文件夹，如果存在，尝试执行目录中的初始化脚本
