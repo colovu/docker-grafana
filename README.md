@@ -8,13 +8,14 @@
 
 **版本信息：**
 
-- 7.1、latest
+- 7.5
+- 7.1
 
 **镜像信息：**
 
 * 镜像地址：
-  - 阿里云: registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7.1
-  - DockerHub：colovu/grafana:7.1
+  - 阿里云: registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7.5
+  - DockerHub：colovu/grafana:7.5
   * 依赖镜像：debian:buster
 
 > 后续相关命令行默认使用`[Docker Hub](https://hub.docker.com)`镜像服务器做说明
@@ -27,10 +28,10 @@ Docker 快速启动命令：
 
 ```shell
 # 从 Docker Hub 服务器下载镜像并启动
-$ docker run -d --name grafana colovu/grafana:7.1
+$ docker run -d --name grafana colovu/grafana:7.5
 
 # 从 Aliyun 服务器下载镜像并启动
-$ docker run -d --name grafana registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7.1
+$ docker run -d --name grafana registry.cn-shenzhen.aliyuncs.com/colovu/grafana:7.5
 ```
 
 - `colovu/imgname:<TAG>`：镜像名称及版本标签；标签不指定时默认使用`latest`
@@ -166,6 +167,9 @@ export GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS=true
 
 
 ## 更新记录
+
+2021/7/23:
+- 更新软件包为 7.5.10
 
 2021/7/22:
 - 更新软件包为 7.1.5
